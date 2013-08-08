@@ -38,7 +38,7 @@ p shuffled_deck
 player_array << shuffled_deck.pop
 says("player_array")
 puts
-p dealers_array
+p player_array
 puts
 
 says("shuffled_deck after second pop to player_array")
@@ -47,22 +47,14 @@ p shuffled_deck
 
 
 
+
+
+
+
+
 =begin
-do 2.times {player_cards = shuffled_deck.pop}
-puts
-p shuffled_deck
-puts
-p player_cards
-shuffled_deck.pop
-puts
-p shuffled_deck
 
-p 'do you want to hit Y for yes or N for No'
-
-
-
-
-
+NOTES
 
 #After the deck is shuffled I want to deal to to the dealer and a player.
 Both will get two cards to start with, but I'll need to be able to add more to either hand later.
