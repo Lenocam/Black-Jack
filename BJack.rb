@@ -30,8 +30,20 @@ dealers_array << shuffled_deck.pop
 says("dealers_array")
 puts
 p dealers_array
+puts
 
+says("shuffled_deck after .pop to dealers_array")
+p shuffled_deck
 
+player_array << shuffled_deck.pop
+says("player_array")
+puts
+p player_array
+puts
+
+says("shuffled_deck after second pop to player_array")
+puts
+p shuffled_deck
 
 
 
