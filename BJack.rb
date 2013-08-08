@@ -38,7 +38,7 @@ p shuffled_deck
 player_array << shuffled_deck.pop
 says("player_array")
 puts
-p player_array
+p dealers_array
 puts
 
 says("shuffled_deck after second pop to player_array")
