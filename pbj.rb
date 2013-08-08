@@ -11,19 +11,20 @@ dealers_array = Array.new
 deck = suits.product(names)
 shuffled_deck = deck.shuffle
 
-player_array << shuffled_deck.pop
-dealers_array << shuffled_deck.pop
-player_array << shuffled_deck.pop
-dealers_array << shuffled_deck.pop
+  player_array << shuffled_deck.pop
+  dealers_array << shuffled_deck.pop
+  player_array << shuffled_deck.pop
+  dealers_array << shuffled_deck.pop
 
 hand_value = 0
   player_array.each do |card|
     if card[1] == "A"
       hand_value += 11
-    elsif card.to_i (2..10)
-      hand_value += card.to_i
+    elsif card[1].to_i == 2..10
+      hand_value += card[1].to_i
     else 
-      hand_value += 10    
+      card[1] ==  'Q' || card[1] == 'J' || card[1] == 'K' 
+      hand_value += 10
   end
 end
 
@@ -35,3 +36,4 @@ says("dealers_array")
 p dealers_array
 puts
 
+puts hand_value
