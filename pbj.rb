@@ -20,21 +20,31 @@ hand_value = 0
   player_array.each do |card|
     if card[1] == "A"
       hand_value += 11
-      
-    elsif card[1].to_i == (2..10)
+    elsif (2..10).include?(card[1].to_i) 
       hand_value += card[1].to_i
-      binding.pry
     else 
-      card[1] ==  'Q' || card[1] == 'J' || card[1] == 'K' 
       hand_value += 10
   end
 end
 
+dealers_value = 0
+  dealers_array.each do |card|
+    if card[1] == "A"
+      dealers_value += 11
+    elsif (2..10).include?(card[1].to_i) 
+      dealers_value += card[1].to_i
+    else 
+      dealers_value += 10
+  end
+end
+
+
 says("player_array")
-puts player_array
+p player_array
+puts hand_value
+
 puts
 says("dealers_array")
-puts dealers_array
+p dealers_array
+puts dealers_value
 puts
-
-puts hand_value
