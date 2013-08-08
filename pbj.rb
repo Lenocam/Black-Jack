@@ -16,12 +16,16 @@ dealers_array << shuffled_deck.pop
 player_array << shuffled_deck.pop
 dealers_array << shuffled_deck.pop
 
-hand_count = 0
-  player_array.each do |names|
-    if names
-    
+hand_value = 0
+  player_array.each do |card|
+    if card[1] == "A"
+      hand_value += 11
+    elsif card.to_i (2..10)
+      hand_value += card.to_i
+    else 
+      hand_value += 10    
   end
-
+end
 
 
 says("player_array")
