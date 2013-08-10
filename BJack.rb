@@ -1,80 +1,144 @@
-def says(msg)
-	puts "=>>> #{msg}"
-end
-	
+def calculate (card)
+  arr = card.map { |e| e[1]  }
+
+  hand = 0
+    arr.each do |value|
+      if value == "A"
+        hand += 11
+      elsif (2..10).include?(value.to_i) 
+        hand += value.to_i
+      else 
+        hand += 10
+    end
+  end
+  #Aces are systematic
+  arr.select { |e| e == 'A'}.count.times do
+    hand -= 10 if hand > 21
+  end
+  hand
+end    
+
+
+puts "Welcome to Blackjack!"
+puts ""
+puts ""
+
 suits = %w[hearts diamonds clubs spades]
 names = %w[A 2 3 4 5 6 7 8 9 10 J Q K]
 
 deck = suits.product(names)
 shuffled_deck = deck.shuffle
 
-says("shuffled_deck") 
-p shuffled_deck
-puts
+#Deal Cards
 
-player_array = Array.new
+players_array = Array.new
 dealers_array = Array.new
 
-player_array << shuffled_deck.pop
-says("player_array")
-puts
-p player_array
-puts
+  players_array << shuffled_deck.pop
+  dealers_array << shuffled_deck.pop
+  players_array << shuffled_deck.pop
+  dealers_array << shuffled_deck.pop
 
-says("shuffled_deck after .pop to player player_array")
-puts
-p shuffled_deck
-puts
+dealers_hand = calculate(dealers_array)
+players_hand = calculate(players_array)
 
-dealers_array << shuffled_deck.pop
-says("dealers_array")
-puts
-p dealers_array
-puts
-
-says("shuffled_deck after .pop to dealers_array")
-p shuffled_deck
-
-player_array << shuffled_deck.pop
-says("player_array")
-puts
-p player_array
-puts
-
-says("shuffled_deck after second pop to player_array")
-puts
-p shuffled_deck
+#Show Cards
 
 
+puts "Dealer's Hand: #{dealers_array} = #{dealers_hand}"
+puts "Player's Hand: #{players_array} = #{players_hand}"
+puts ""
+puts ""
 
 
+#Players Turn
 
+if players_hand == 21
+  puts "Boom goes the Dynamite!...Blackjack!...You Win!"
+  puts "You hit #{players_hand}"
+  exit
+end
 
+while players_hand < 21
+  puts "What would you like to do: 1) Hit 2) Stay"
+  hit_or_stay = gets.chomp
 
+  if !['1', '2'].include?(hit_or_stay)
+    puts "Error: Press 1 for Hit or 2 to Stay"
+    next
+  end
 
-=begin
+  if hit_or_stay == "2"
+    puts "You chose to stay."
+    break
+  end
 
-NOTES
+  #hit
+  new_card = shuffled_deck.pop
+  puts "Dealing card to player: #{new_card}"
+  players_array << new_card
+  players_hand = calculate(players_array)
+  puts "Your total is now: #{players_hand}"
 
-#After the deck is shuffled I want to deal to to the dealer and a player.
-Both will get two cards to start with, but I'll need to be able to add more to either hand later.
-I'll want each card to be searchable by the 1 spot of the array to go toward determining the value of the card.
-The value of the card will need to pre-determined before this point. So i'll have to develop a way 
-for the all the names on the cards to also have point values associated with them and for when
-an Ace should be considered 1 point or 11 points. I think the best way to know when an Ace should be 1 or 11 
-is to have all the cards in a hand be re-examined after a player gets a new card then compared to the other hand at the end of a round.
-That way you don't assign a value to an Ace to early then have to walk it back before the hand total has already passed 21.
+  if players_hand == 21
+    puts "You've achieved victory, by squashing your enemy with 21"
+    exit
+  elsif players_hand > 21
+    puts "You Lose!"
+    puts "That feeling is called shame. Embrace it."
+    puts "Shh...You look so sad."
+    exit
+  end
+end
 
-The cards should only be shuffled once per game. Shuffle if the dealer has used more than 75% of the cards in the deck.
+#Dealers Turn
 
-Hands
-Player to win he needs to have more > than the dealer but less than or equal to =< 21. 
-Converserly, the dealer must have more > the player or less than or equal =< to 21.
-Tie is a draw.
+if dealers_hand == 21
+  puts "Sorry, dealer hit blackjack"
+  puts "It's not your lucky day"
+  exit
+end
 
+while dealers_hand < 17
+  #hit
+  new_card = shuffled_deck.pop
+  puts "Dealing new card for dealer: #{new_card}"
+  dealers_array << new_card
+  dealers_hand = calculate(dealers_array)
+  puts "The Dealer's new total is #{dealers_hand}"
 
+  if dealers_hand == 21
+    puts "Sorry you Lose"
+    puts "So Sad"
+    exit
+  elsif dealers_hand > 21
+    puts "Congratulations! You win!"
+    exit    
+  end
+end
 
-=end
+#Compare Hands
 
+puts "Dealer's Cards:"
+dealers_array.each do |card|
+  puts "=> #{card}"
+end
+puts ""
 
+puts "Your Cards:"
+players_array.each do |card|
+  puts "=> #{card}"
+end
+puts ""
 
+if dealers_hand > players_hand
+  puts "Sorry, the dealer wins"
+elsif dealers_hand < players_hand
+  puts "Congratulations, you win!"
+else
+  puts "It's a tie"
+end 
+
+exit
+
+  
