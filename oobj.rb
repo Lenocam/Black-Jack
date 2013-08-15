@@ -1,10 +1,35 @@
+require 'rubygems'
+require 'rubygame'
 
-#class Game
+class Game
+  attr_accessor :player, :dealer, :deck
+
+  def initialize(player, dealer, deck)
+  @player = player
+  @dealer = dealer
+  @deck = deck
+  end
+
+def new 
+  loop do 2.times
+    player << deck.deal_one
+    dealer << deck.deal_one
+  end
+
+
+
   #begin game
   #end game
   #new deal
   #new game ie shuffle cards
-#end
+  #multiple players
+  #multiple decks
+end
+
+p player
+p dealer
+
+
 
 class Card
   attr_accessor :suit, :face_value
@@ -38,7 +63,7 @@ class Deck
   def initialize
     @cards = []
     %w[H D C S].each do |suit|
-    %w[A 2 3 4 5 6 7 8 9 10 J Q K].each do |face_value|
+      %w[A 2 3 4 5 6 7 8 9 10 J Q K].each do |face_value|
       @cards << Card.new(suit, face_value)
     end
   end
@@ -57,6 +82,7 @@ class Deck
     cards.size
   end
 end
+end
 
 
 deck = Deck.new
@@ -74,11 +100,7 @@ deck.deal_one.to_s
 
 puts deck.size
 
-
-
-
-
-
+=begin
 class Player
   #has hand
   #hits
@@ -98,14 +120,8 @@ class Hand
   #has cards from deck
   #calculated
   #added to
-    #at beginning of hand
-    #in hand based on choices from player(s)
-
-
-#end
-
-class Table
-  #multiple players
-  #multiple decks
-
+  #at beginning of hand
+  #in hand based on choices from player(s)
 end
+end
+=end
