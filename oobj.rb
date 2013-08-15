@@ -1,6 +1,3 @@
-require 'rubygems'
-require 'rubygame'
-
 class Game
   attr_accessor :player, :dealer, :deck
 
@@ -11,7 +8,7 @@ class Game
   end
 
 def new 
-  loop do 2.times
+  2.times
     player << deck.deal_one
     dealer << deck.deal_one
   end
@@ -25,10 +22,6 @@ def new
   #multiple players
   #multiple decks
 end
-
-p player
-p dealer
-
 
 
 class Card
@@ -82,7 +75,6 @@ class Deck
     cards.size
   end
 end
-end
 
 
 deck = Deck.new
@@ -90,16 +82,12 @@ deck = Deck.new
 
 puts deck.cards
 puts deck.size
-deck.deal_one.to_s
-deck.deal_one.to_s
-deck.deal_one.to_s
-deck.deal_one.to_s
-deck.deal_one.to_s
-deck.deal_one.to_s
-deck.deal_one.to_s
+
 
 puts deck.size
 
+p @player.to_s
+p @dealer.to_s
 =begin
 class Player
   #has hand
