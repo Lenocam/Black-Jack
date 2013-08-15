@@ -4,7 +4,7 @@ class Game
   def initialize(player, dealer, deck)
   @player = player
   @dealer = dealer
-  @deck = deck
+  deck = Deck.new
   end
 
 def new 
