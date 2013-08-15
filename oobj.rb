@@ -1,8 +1,9 @@
 
 #class Game
-#  def method_name
-    
-#  end
+  #begin game
+  #end game
+  #new deal
+  #new game ie shuffle cards
 #end
 
 class Card
@@ -85,6 +86,7 @@ class Player
 
 end
 
+
 class Dealer
   #has hand
   #hits
@@ -98,10 +100,12 @@ class Hand
   #added to
     #at beginning of hand
     #in hand based on choices from player(s)
-    
 
-end
+
+#end
 
 class Table
+  #multiple players
+  #multiple decks
 
 end
